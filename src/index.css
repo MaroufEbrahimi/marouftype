@@ -15,16 +15,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Tahere";
-  src: url("../public/fonts/Outahere\ W00/Outahere W00.woff2") format("woff2"),
-    url("../public/fonts/Outahere\ W00/Outahere W00.woff") format("woff"),
-    url("../public/fonts/Outahere\ W00/Outahere W00.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* #__________ General Styles __________# */
 /* Flex Box */
 .dis_f {
