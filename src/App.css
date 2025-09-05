@@ -1,3 +1,16 @@
+.timer_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.main_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem !important;
+}
 /* input container */
 .input_container input {
   border-radius: 8px;
