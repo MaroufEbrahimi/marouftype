@@ -1,0 +1,28 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+}
+
+/* input container */
+.input_container input {
+  border-radius: 8px;
+  border: 1px solid #eee;
+  outline: none;
+  padding: 20px;
+  font-size: 20px;
+  min-width: 500px;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  letter-spacing: 0.02em;
+}
+.input_container input::placeholder {
+  font-size: 16px;
+  letter-spacing: 0.1em;
+}
