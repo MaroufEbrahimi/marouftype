@@ -22,6 +22,8 @@ const Timer = ({ isStarted }: TimerProps) => {
           }
         });
       }, 1000);
+    } else {
+      setTimer(60);
     }
 
     return () => {
@@ -32,10 +34,15 @@ const Timer = ({ isStarted }: TimerProps) => {
   return (
     <div className="timer_card">
       <div className="timer">
-        <div className="dot"></div>
+        <div className={`dot ${isStarted ? "animateDot" : ""}`}></div>{" "}
         <svg>
           <circle cx="70" cy="70" r="70"></circle>
-          <circle cx="70" cy="70" r="70"></circle>
+          <circle
+            cx="70"
+            cy="70"
+            r="70"
+            className={isStarted ? "animateCircle" : ""}
+          ></circle>
         </svg>
         <div className="number">{timer}</div>
       </div>

@@ -23,14 +23,16 @@
   height: 100%;
   fill: none;
   stroke: #191919;
-  stroke-width: 2;
+  stroke-width: 3.5px;
   transform: translate(5px, 5px);
 }
 .timer svg circle:nth-child(2) {
   stroke: #4caf50;
   stroke-dasharray: 440;
   stroke-dashoffset: 440;
-  animation: animate 60s steps(60) infinite;
+}
+.animateCircle {
+  animation: animate 60s linear forwards;
 }
 @keyframes animate {
   0% {
@@ -45,19 +47,20 @@
   inset: 5px;
   border-radius: 50%;
   z-index: 10;
-  animation: animateDot 60s steps(60) infinite;
+}
+.animateDot {
+  animation: animateDot 60s linear forwards;
 }
 .timer .dot::before {
   content: "";
   position: absolute;
   top: -5px;
   left: 50%;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: #4caf50;
   border-radius: 50%;
   transform: translateX(-50%);
-  border-radius: 50%;
   box-shadow: 0 0 10px #4caf50, 0 0 30px #4caf50;
 }
 @keyframes animateDot {
@@ -78,4 +81,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 3rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
