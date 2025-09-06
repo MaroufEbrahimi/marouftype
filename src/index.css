@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-color: #4285f4;
+}
+
 /* Tahere fonts */
 @font-face {
   font-family: "Tahere";

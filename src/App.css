@@ -13,14 +13,14 @@
 /* input container */
 .input_container input {
   border-radius: 8px;
-  border: 1px solid #eee;
+  border: none;
   outline: none;
-  padding: 20px;
+  padding: 40px 20px;
   font-size: 20px;
-  min-width: 500px;
+  min-width: 700px;
   background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   letter-spacing: 0.02em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .input_container input::placeholder {
   font-size: 16px;

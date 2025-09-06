@@ -44,7 +44,10 @@ const Timer = ({ isStarted }: TimerProps) => {
             className={isStarted ? "animateCircle" : ""}
           ></circle>
         </svg>
-        <div className="number">{timer}</div>
+        <div className="number dis_f c_fdc">
+          <p className="number_timer">{timer}</p>
+          <p className="sec_text">ثانیه</p>
+        </div>
       </div>
     </div>
   );
