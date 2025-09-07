@@ -22,7 +22,7 @@ const Navbar = ({ wordPerMin, charsPerMin }: NavbarProps) => {
           <div className="navbar_inner_box_text">% دقت</div>
         </div>
       </div>
-      <div className="navbar_box">2</div>
+      <div className="navbar_box">پروفایل</div>
     </div>
   );
 };

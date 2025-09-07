@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Timer from "./components/Timer/Timer";
+import Input from "./components/Input/Input";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -12,13 +13,6 @@ function App() {
 
   const charsCount = inputValue.replace(/\s/g, "").length;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    if (!isStarted && e.target.value.length > 0) {
-      setIsStarted(true);
-    }
-  };
-
   return (
     <>
       <Navbar wordPerMin={wordCount} charsPerMin={charsCount} />
@@ -26,16 +20,12 @@ function App() {
         <Timer isStarted={isStarted} />
       </div>
 
-      <div className="main_input">
-        <div className="input_container">
-          <input
-            type="text"
-            placeholder="Type something..."
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
+      <Input
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        isStarted={isStarted}
+        setIsStarted={setIsStarted}
+      />
     </>
   );
 }
