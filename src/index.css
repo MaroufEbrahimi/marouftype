@@ -56,3 +56,7 @@
 .gap_30 {
   gap: 30px;
 }
+
+.cur_p {
+  cursor: pointer;
+}
