@@ -1,3 +1,4 @@
+import Profile from "../Profile/Profile";
 import "./Navbar.css";
 
 interface NavbarProps {
@@ -22,7 +23,9 @@ const Navbar = ({ wordPerMin, charsPerMin }: NavbarProps) => {
           <div className="navbar_inner_box_text">% دقت</div>
         </div>
       </div>
-      <div className="navbar_box">پروفایل</div>
+      <div className="navbar_box">
+        <Profile />
+      </div>
     </div>
   );
 };
