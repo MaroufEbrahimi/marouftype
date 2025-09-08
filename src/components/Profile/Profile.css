@@ -1,4 +1,5 @@
-.profile_circle img {
+.profile_circle img,
+.profile_inner_box img {
   width: 70px;
   height: 70px;
 }
@@ -13,7 +14,35 @@
   position: absolute;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   top: 10px;
-  left: -55px;
-  width: 200px;
-  padding: 30px;
+  left: -115px;
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.profile_inner_box h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 10px 0 5px 0;
+  font-family: Tahoma, sans-serif;
+}
+.profile_inner_box h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  color: #555;
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 1.2px;
+  font-family: Tahoma, sans-serif;
+}
+.profile_inner_box p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #777;
+  margin-bottom: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  direction: ltr;
 }

@@ -16,7 +16,28 @@ const Profile = () => {
       {profileBox && (
         <div className="profile_box">
           <div className="profile_inner_box">
-            <h2>not found</h2>
+            <img src={profile} alt="profile avatar" />
+            <h3>Marouf Ebrahimi</h3>
+            <h4>Software Engineer</h4>
+            <p>
+              Engineer skilled in building scalable, efficient, high-performance
+              applications.
+            </p>
+
+            <div className="profile_social dis_f gap_15">
+              <a href="">
+                <i>i</i>
+              </a>
+              <a href="">
+                <i>i</i>
+              </a>
+              <a href="">
+                <i>i</i>
+              </a>
+              <a href="">
+                <i>i</i>
+              </a>
+            </div>
           </div>
         </div>
       )}
