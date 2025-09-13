@@ -1,8 +1,29 @@
 import "./Profile.css";
 import profile from "../../assets/img/profile_avatar.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const Profile = () => {
   const [profileBox, setProfileBox] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        boxRef.current &&
+        !boxRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).closest(".profile_circle")
+      ) {
+        setProfileBox(false);
+      }
+    };
+
+    if (profileBox) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileBox]);
 
   return (
     <div className="profile">
@@ -14,7 +35,7 @@ const Profile = () => {
       </div>
 
       {profileBox && (
-        <div className="profile_box">
+        <div className="profile_box" ref={boxRef}>
           <div className="profile_inner_box">
             <img src={profile} alt="profile avatar" />
             <h3>Marouf Ebrahimi</h3>
