@@ -20,12 +20,14 @@ function App() {
         <Timer isStarted={isStarted} />
       </div>
 
-      <Input
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        isStarted={isStarted}
-        setIsStarted={setIsStarted}
-      />
+      <div style={{ marginBottom: "30px" }}>
+        <Input
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          isStarted={isStarted}
+          setIsStarted={setIsStarted}
+        />
+      </div>
     </>
   );
 }
