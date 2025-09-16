@@ -121,7 +121,8 @@ const Input = ({
       boxShadow: "var(--gen-box-shadow)",
       fontFamily:
         '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-      fontSize: 20,
+      fontSize: 22,
+      color: "#646669",
       lineHeight: "1.8",
       cursor: "text",
       userSelect: "none",
@@ -133,8 +134,8 @@ const Input = ({
       display: "inline-block",
       paddingRight: 5,
     },
-    charDefault: { opacity: 0.25 },
-    charCorrect: { color: "#4285f4", fontWeight: "bold" },
+    charDefault: { opacity: 0.55 },
+    charCorrect: { color: "#000", fontWeight: "bold" },
     charWrong: { color: "#dc2626" },
     caret: {
       display: "inline-block",
@@ -147,7 +148,6 @@ const Input = ({
       animation: "blink 0.9s step-start infinite",
     },
     inputHidden: {
-      // پنهان ولی قابل فوکوس
       position: "absolute",
       opacity: 0,
       left: -9999,
@@ -237,7 +237,7 @@ const Input = ({
 
           {/* اگر دقیقاً در انتهای کلمه و هیچ حرفی باقی نمانده، caret نمایش داده شود */}
           {typedLen === letters.length && (
-            <span style={{ marginLeft: 4 }}>
+            <span style={{ marginLeft: 0 }}>
               <span style={styles.caret} />
             </span>
           )}
