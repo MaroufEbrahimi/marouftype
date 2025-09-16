@@ -19,7 +19,7 @@ const Input = ({
     "world",
     "react",
     "typescript",
-    "monkeytype",
+    "marouftype",
     "keyboard",
     "coding",
     "javascript",
@@ -116,11 +116,11 @@ const Input = ({
     wordsBox: {
       maxWidth: 900,
       width: "100%",
-      padding: "12px 16px",
-      borderRadius: 8,
-      background: "#f8fafc",
+      padding: "16px 20px",
+      borderRadius: 20,
+      boxShadow: "var(--gen-box-shadow)",
       fontFamily:
-        "ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace",
+        '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
       fontSize: 20,
       lineHeight: "1.8",
       cursor: "text",
@@ -129,8 +129,11 @@ const Input = ({
       flexWrap: "wrap",
       gap: 8,
     },
-    word: { display: "inline-block", paddingRight: 6 },
-    charDefault: { opacity: 0.55 },
+    word: {
+      display: "inline-block",
+      paddingRight: 5,
+    },
+    charDefault: { opacity: 0.25 },
     charCorrect: { color: "#4285f4", fontWeight: "bold" },
     charWrong: { color: "#dc2626" },
     caret: {
@@ -141,7 +144,6 @@ const Input = ({
       background: "#111827",
       marginLeft: 2,
       verticalAlign: "middle",
-      // simple blink using opacity animation not included inline — acceptable without blink
       animation: "blink 0.9s step-start infinite",
     },
     inputHidden: {

@@ -1,10 +1,11 @@
 .timer_card {
   position: relative;
   width: 250px;
-  height: 250px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.6rem;
 }
 .timer_card .timer {
   position: relative;
@@ -47,7 +48,7 @@
   inset: 5px;
   border-radius: 50%;
   z-index: 10;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--gen-box-shadow);
 }
 .animateDot {
   animation: animateDot 60s linear forwards;
