@@ -13,12 +13,9 @@ const Input = ({
   isStarted,
   setIsStarted,
 }: InputProps) => {
-  // پایه‌ای از کلمات پیشنهادی — هرچه خواستی اضافه/تغییر بده
   const suggestions: string[] = [
     "hello",
     "world",
-    "react",
-    "typescript",
     "marouftype",
     "keyboard",
     "coding",
@@ -26,29 +23,28 @@ const Input = ({
     "component",
     "performance",
     "development",
+    "method",
+    "double",
+    "int",
+    "float",
+    "string",
+    "boolean",
   ];
 
-  const WORD_COUNT = 40; // تعداد کلماتی که نمایش داده می‌شود
+  const WORD_COUNT = 20;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // لیست کلمات فعلی (تصادفی ساخته می‌شود)
   const [words, setWords] = useState<string[]>(() =>
     generateWords(WORD_COUNT, suggestions)
   );
-
-  // ایندکس کلمه‌ای که کاربر در حال تایپشه
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
-
-  // آرایه کلمات تایپ‌شده (هر ورود به کلمه بعدی روی این ذخیره می‌شود)
   const [typedWords, setTypedWords] = useState<string[]>([]);
 
-  // هنگام mount، فوکوس روی input پنهان
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  // وقتی کاربر به آخر لیست رسید => لیست جدید بساز و ریست کن
   useEffect(() => {
     if (currentWordIndex >= words.length) {
       setWords(generateWords(WORD_COUNT, suggestions));
@@ -59,7 +55,6 @@ const Input = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentWordIndex]);
 
-  // تولید آرایه کلمه‌ها
   function generateWords(count: number, source: string[]) {
     const out: string[] = [];
     for (let i = 0; i < count; i++) {
@@ -68,12 +63,10 @@ const Input = ({
     return out;
   }
 
-  // کلیدی‌ترین بخش: مدیریت رمز فضا (space) و شروع تست
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    // اگر شروع نشده، با اولین تایپ واقعی (حروف/اعداد) شروع کن
     if (
       !isStarted &&
-      e.key.length === 1 && // کاراکتر قابل چاپ
+      e.key.length === 1 &&
       !e.ctrlKey &&
       !e.metaKey &&
       e.key !== " "
@@ -81,9 +74,8 @@ const Input = ({
       setIsStarted(true);
     }
 
-    // وقتی فضا زده شد => به کلمه بعدی برو
     if (e.key === " ") {
-      e.preventDefault(); // جلوگیری از وارد شدن فاصله در input
+      e.preventDefault();
       const trimmed = inputValue.trim();
       setTypedWords((prev) => {
         const copy = [...prev];
@@ -95,17 +87,15 @@ const Input = ({
     }
   };
 
-  // وقتی کاربر متن را تغییر می‌دهد (کنترل‌شده از prop)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  // کلیک روی ناحیه باعث فوکوس input پنهان می‌شود
   const handleContainerClick = () => {
     inputRef.current?.focus();
   };
 
-  // استایل‌های ساده درون‌خطی برای اینکه فوراً ببینی
+  // --- استایل‌ها: توجه کن spanها inline-block و lineHeight کوچکتر هستند ---
   const styles: { [k: string]: React.CSSProperties } = {
     wrapper: {
       display: "flex",
@@ -116,26 +106,43 @@ const Input = ({
     wordsBox: {
       maxWidth: 900,
       width: "100%",
-      padding: "16px 20px",
+      padding: "30px 25px",
       borderRadius: 20,
       boxShadow: "var(--gen-box-shadow)",
       fontFamily:
         '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
       fontSize: 22,
       color: "#646669",
-      lineHeight: "1.8",
+      lineHeight: "1.8", // کانتینر بزرگتر نگه داشته شده
       cursor: "text",
       userSelect: "none",
       display: "flex",
       flexWrap: "wrap",
-      gap: 8,
+      rowGap: 18,
+      columnGap: 12,
     },
+    // هر کلمه (پیش‌فرض) باید inline-block باشه تا margin/transform اثر کنه
     word: {
       display: "inline-block",
       paddingRight: 5,
+      lineHeight: 1, // کوچکتر از lineHeight کانتینر => خط نزدیک‌تر میشه
+      verticalAlign: "baseline",
+    },
+    // استایل خطای کلمه: بدون background آبی، border نزدیک به متن با translateY
+    wordWrong: {
+      display: "inline-block",
+      paddingRight: 5,
+      borderBottom: "1px solid #dc2626",
+      lineHeight: 1,
+      verticalAlign: "baseline",
+      // transform: "translateY(-2px)",
+      backgroundColor: "transparent",
     },
     charDefault: { opacity: 0.55 },
-    charCorrect: { color: "#000", fontWeight: "bold" },
+    charCorrect: {
+      color: "#000",
+      fontWeight: "bold",
+    },
     charWrong: { color: "#dc2626" },
     caret: {
       display: "inline-block",
@@ -157,21 +164,21 @@ const Input = ({
     status: { marginTop: 8, color: "#065f46", fontWeight: 600 },
   };
 
-  // رندر یک کلمه (با رنگ‌دهی برای هر حرف و caret برای کلمه جاری)
   const renderWord = (word: string, wi: number) => {
     const isCurrent = wi === currentWordIndex;
     const typed = typedWords[wi] ?? (isCurrent ? inputValue : "");
 
-    // برای کلمات قبلی: نشان‌دادن هر کاراکتر با مقایسه typed vs word
     if (wi < currentWordIndex) {
       const typedForThis = typedWords[wi] ?? "";
       const maxLen = Math.max(word.length, typedForThis.length);
+      // تشخیص خطا: وقتی کاربر چیزی تایپ کرده و با word اصلی فرق داشته باشه
+      const isWrong = typedForThis !== "" && typedForThis !== word;
+
       return (
-        <span key={wi} style={styles.word}>
+        <span key={wi} style={isWrong ? styles.wordWrong : styles.word}>
           {Array.from({ length: maxLen }).map((_, i) => {
             const targetChar = word[i] ?? "";
             const typedChar = typedForThis[i] ?? "";
-            // اگر تایپ نشده => خاکستری (فقط زمانی که targetChar وجود داشته باشد)
             if (typedChar === "") {
               return (
                 <span
@@ -182,7 +189,6 @@ const Input = ({
                 </span>
               );
             }
-            // اگر برابر => درست، وگرنه نادرست
             const correct = typedChar === targetChar;
             return (
               <span
@@ -197,7 +203,6 @@ const Input = ({
       );
     }
 
-    // کلمه فعلی — نمایش تا کاراکتر تایپ‌شده و caret
     if (isCurrent) {
       const letters = word.split("");
       const typedLen = inputValue.length;
@@ -205,7 +210,6 @@ const Input = ({
       return (
         <span key={wi} style={styles.word}>
           {letters.map((ch, i) => {
-            // قبل از caret: مقایسه
             if (i < typedLen) {
               const correct = inputValue[i] === ch;
               return (
@@ -217,7 +221,6 @@ const Input = ({
                 </span>
               );
             }
-            // caret بعد از این حرف؟
             const showCaret = i === typedLen;
             return (
               <span key={i} style={styles.charDefault}>
@@ -227,7 +230,6 @@ const Input = ({
             );
           })}
 
-          {/* اگر کاربر بیش از طول کلمه تایپ کرده باشه، نشان‌دهنده‌ی حروف اضافه به‌صورت قرمز */}
           {typedLen > letters.length &&
             Array.from(inputValue.slice(letters.length)).map((ch, j) => (
               <span key={"extra-" + j} style={styles.charWrong}>
@@ -235,7 +237,6 @@ const Input = ({
               </span>
             ))}
 
-          {/* اگر دقیقاً در انتهای کلمه و هیچ حرفی باقی نمانده، caret نمایش داده شود */}
           {typedLen === letters.length && (
             <span style={{ marginLeft: 0 }}>
               <span style={styles.caret} />
@@ -245,7 +246,6 @@ const Input = ({
       );
     }
 
-    // کلمه‌های بعدی (هنوز تایپ نشده)
     return (
       <span key={wi} style={styles.word}>
         <span style={styles.charDefault}>{word}</span>
@@ -259,7 +259,6 @@ const Input = ({
         {words.map((w, i) => renderWord(w, i))}
       </div>
 
-      {/* input کنترل‌شده اما پنهان — برای گرفتن ورودی کیبورد */}
       <input
         ref={inputRef}
         value={inputValue}
@@ -270,7 +269,6 @@ const Input = ({
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck={false}
-        // tabIndex 0 تا با tab نیز قابل فوکوس باشد
         tabIndex={0}
       />
 
