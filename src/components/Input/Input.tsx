@@ -5,6 +5,7 @@ interface InputProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   isStarted: boolean;
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  setTypingStatus: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Input = ({
@@ -12,6 +13,7 @@ const Input = ({
   setInputValue,
   isStarted,
   setIsStarted,
+  setTypingStatus,
 }: InputProps) => {
   const suggestions: string[] = [
     "hello",
@@ -44,6 +46,10 @@ const Input = ({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    setTypingStatus(`${currentWordIndex}`);
+  }, [currentWordIndex, words.length, setTypingStatus]);
 
   useEffect(() => {
     if (currentWordIndex >= words.length) {
