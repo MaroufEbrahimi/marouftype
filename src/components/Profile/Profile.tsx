@@ -1,6 +1,8 @@
 import "./Profile.css";
 import profile from "../../assets/img/profile_avatar.png";
 import { useEffect, useRef, useState } from "react";
+import * as Icon from "react-bootstrap-icons";
+
 const Profile = () => {
   const [profileBox, setProfileBox] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -47,16 +49,16 @@ const Profile = () => {
 
             <div className="profile_social dis_f gap_15">
               <a href="">
-                <i>i</i>
+                <Icon.Linkedin />
               </a>
               <a href="">
-                <i>i</i>
+                <Icon.Github />
               </a>
               <a href="">
-                <i>i</i>
+                <Icon.Instagram />
               </a>
               <a href="">
-                <i>i</i>
+                <Icon.Facebook />
               </a>
             </div>
           </div>
