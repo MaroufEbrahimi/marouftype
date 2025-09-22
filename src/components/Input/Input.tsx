@@ -35,7 +35,7 @@ const Input = ({
     "boolean",
   ];
 
-  const WORD_COUNT = 20;
+  const WORD_COUNT = 25;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
