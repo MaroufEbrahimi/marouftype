@@ -8,6 +8,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [isStarted, setIsStarted] = useState(false);
   const [typingStatus, setTypingStatus] = useState("");
+  const [totalChars, setTotalChars] = useState(0);
 
   const wordCount =
     inputValue.trim() === "" ? 0 : inputValue.trim().split(/\s+/).length;
@@ -19,13 +20,14 @@ function App() {
     setIsStarted(false); // تایمر رو متوقف کن
     setInputValue(""); // متن تایپ شده پاک شود
     setTypingStatus(""); // وضعیت تایپ هم ریست شود
+    setTotalChars(0);
   };
 
   return (
     <>
       <Navbar
         wordPerMin={wordCount}
-        charsPerMin={charsCount}
+        charsPerMin={totalChars}
         typingStatus={typingStatus}
       />
       <div className="timer_container">
@@ -39,6 +41,7 @@ function App() {
           isStarted={isStarted}
           setIsStarted={setIsStarted}
           setTypingStatus={setTypingStatus}
+          setTotalChars={setTotalChars}
         />
       </div>
     </>

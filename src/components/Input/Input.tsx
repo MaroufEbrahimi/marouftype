@@ -6,6 +6,7 @@ interface InputProps {
   isStarted: boolean;
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
   setTypingStatus: React.Dispatch<React.SetStateAction<string>>;
+  setTotalChars: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Input = ({
@@ -14,6 +15,7 @@ const Input = ({
   isStarted,
   setIsStarted,
   setTypingStatus,
+  setTotalChars,
 }: InputProps) => {
   const suggestions: string[] = [
     "hello",
@@ -83,6 +85,7 @@ const Input = ({
     if (e.key === " ") {
       e.preventDefault();
       const trimmed = inputValue.trim();
+      setTotalChars((prev) => prev + trimmed.length);
       setTypedWords((prev) => {
         const copy = [...prev];
         copy[currentWordIndex] = trimmed;
@@ -277,10 +280,6 @@ const Input = ({
         spellCheck={false}
         tabIndex={0}
       />
-
-      <div style={styles.status}>
-        Typing word {currentWordIndex + 1} / {words.length}
-      </div>
     </div>
   );
 };
