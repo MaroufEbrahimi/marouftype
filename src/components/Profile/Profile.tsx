@@ -1,5 +1,6 @@
 import "./Profile.css";
 import profile from "../../assets/img/profile_avatar.png";
+import marouf from "../../assets/img/marouf.jpeg";
 import { useEffect, useRef, useState } from "react";
 import * as Icon from "react-bootstrap-icons";
 
@@ -39,7 +40,7 @@ const Profile = () => {
       {profileBox && (
         <div className="profile_box" ref={boxRef}>
           <div className="profile_inner_box">
-            <img src={profile} alt="profile avatar" />
+            <img src={marouf} alt="profile avatar" />
             <h3>Marouf Ebrahimi</h3>
             <h4>Software Engineer</h4>
             <p>
@@ -47,17 +48,26 @@ const Profile = () => {
               applications.
             </p>
 
-            <div className="profile_social dis_f gap_15">
-              <a href="">
+            <div className="profile_social dis_f gap_10">
+              <a
+                href="https://www.linkedin.com/in/maroufebrahimi/"
+                target="_blank"
+              >
                 <Icon.Linkedin />
               </a>
-              <a href="">
+              <a href="https://github.com/MaroufEbrahimi" target="_blank">
                 <Icon.Github />
               </a>
-              <a href="">
+              <a
+                href="https://www.instagram.com/marouf_fm?igsh=cXo4bnhxa2VrYjVt"
+                target="_blank"
+              >
                 <Icon.Instagram />
               </a>
-              <a href="">
+              <a
+                href="https://www.facebook.com/share/1HwdtUUJUF/"
+                target="_blank"
+              >
                 <Icon.Facebook />
               </a>
             </div>

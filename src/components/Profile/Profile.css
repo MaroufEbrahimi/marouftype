@@ -2,6 +2,7 @@
 .profile_inner_box img {
   width: 70px;
   height: 70px;
+  border-radius: 50px;
 }
 .profile_box {
   position: relative;
@@ -45,4 +46,24 @@
   margin-bottom: 15px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   direction: ltr;
+}
+
+.profile_social a {
+  color: var(--main-color);
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: var(--gen-box-shadow);
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_social a:hover {
+  background: var(--main-color);
+  color: #fff;
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
