@@ -9,24 +9,21 @@ function App() {
   const [isStarted, setIsStarted] = useState(false);
   const [typingStatus, setTypingStatus] = useState("");
   const [totalChars, setTotalChars] = useState(0);
-
-  const wordCount =
-    inputValue.trim() === "" ? 0 : inputValue.trim().split(/\s+/).length;
-
-  const charsCount = inputValue.replace(/\s/g, "").length;
+  const [totalWordsTyped, setTotalWordsTyped] = useState(0); // ✅ اینو اضافه کن
 
   // 📌 وقتی تایمر صفر شد، این تابع اجرا میشه
   const handleTimeUp = () => {
-    setIsStarted(false); // تایمر رو متوقف کن
-    setInputValue(""); // متن تایپ شده پاک شود
-    setTypingStatus(""); // وضعیت تایپ هم ریست شود
+    setIsStarted(false);
+    setInputValue("");
+    setTypingStatus("");
     setTotalChars(0);
+    setTotalWordsTyped(0); // ✅ ریست بشه
   };
 
   return (
     <>
       <Navbar
-        wordPerMin={wordCount}
+        wordPerMin={totalWordsTyped} // ✅ الان شناخته میشه
         charsPerMin={totalChars}
         typingStatus={typingStatus}
       />
@@ -42,6 +39,7 @@ function App() {
           setIsStarted={setIsStarted}
           setTypingStatus={setTypingStatus}
           setTotalChars={setTotalChars}
+          setTotalWordsTyped={setTotalWordsTyped}
         />
       </div>
     </>

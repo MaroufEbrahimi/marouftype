@@ -7,6 +7,7 @@ interface InputProps {
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
   setTypingStatus: React.Dispatch<React.SetStateAction<string>>;
   setTotalChars: React.Dispatch<React.SetStateAction<number>>;
+  setTotalWordsTyped: React.Dispatch<React.SetStateAction<number>>; // ✅ اضافه شد
 }
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   setIsStarted,
   setTypingStatus,
   setTotalChars,
+  setTotalWordsTyped,
 }: InputProps) => {
   const suggestions: string[] = [
     "hello",
@@ -35,7 +37,7 @@ const Input = ({
     "boolean",
   ];
 
-  const WORD_COUNT = 25;
+  const WORD_COUNT = 3;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -44,6 +46,7 @@ const Input = ({
   );
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
   const [typedWords, setTypedWords] = useState<string[]>([]);
+  // const [totalWordsTyped, setTotalWordsTyped] = useState(0);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -92,6 +95,7 @@ const Input = ({
         return copy;
       });
       setCurrentWordIndex((idx) => idx + 1);
+      setTotalWordsTyped((prev) => prev + 1);
       setInputValue("");
     }
   };
@@ -175,7 +179,6 @@ const Input = ({
 
   const renderWord = (word: string, wi: number) => {
     const isCurrent = wi === currentWordIndex;
-    const typed = typedWords[wi] ?? (isCurrent ? inputValue : "");
 
     if (wi < currentWordIndex) {
       const typedForThis = typedWords[wi] ?? "";
