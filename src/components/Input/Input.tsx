@@ -7,7 +7,7 @@ interface InputProps {
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
   setTypingStatus: React.Dispatch<React.SetStateAction<string>>;
   setTotalChars: React.Dispatch<React.SetStateAction<number>>;
-  setTotalWordsTyped: React.Dispatch<React.SetStateAction<number>>; // ✅ اضافه شد
+  setTotalWordsTyped: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Input = ({
@@ -37,7 +37,7 @@ const Input = ({
     "boolean",
   ];
 
-  const WORD_COUNT = 3;
+  const WORD_COUNT = 25;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -46,7 +46,6 @@ const Input = ({
   );
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
   const [typedWords, setTypedWords] = useState<string[]>([]);
-  // const [totalWordsTyped, setTotalWordsTyped] = useState(0);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -108,7 +107,6 @@ const Input = ({
     inputRef.current?.focus();
   };
 
-  // --- استایل‌ها: توجه کن spanها inline-block و lineHeight کوچکتر هستند ---
   const styles: { [k: string]: React.CSSProperties } = {
     wrapper: {
       display: "flex",
@@ -126,7 +124,7 @@ const Input = ({
         '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
       fontSize: 22,
       color: "#646669",
-      lineHeight: "1.8", // کانتینر بزرگتر نگه داشته شده
+      lineHeight: "1.8",
       cursor: "text",
       userSelect: "none",
       display: "flex",
@@ -134,21 +132,18 @@ const Input = ({
       rowGap: 18,
       columnGap: 12,
     },
-    // هر کلمه (پیش‌فرض) باید inline-block باشه تا margin/transform اثر کنه
     word: {
       display: "inline-block",
       paddingRight: 5,
-      lineHeight: 1, // کوچکتر از lineHeight کانتینر => خط نزدیک‌تر میشه
+      lineHeight: 1,
       verticalAlign: "baseline",
     },
-    // استایل خطای کلمه: بدون background آبی، border نزدیک به متن با translateY
     wordWrong: {
       display: "inline-block",
       paddingRight: 5,
       borderBottom: "1px solid #dc2626",
       lineHeight: 1,
       verticalAlign: "baseline",
-      // transform: "translateY(-2px)",
       backgroundColor: "transparent",
     },
     charDefault: { opacity: 0.55 },
@@ -183,7 +178,6 @@ const Input = ({
     if (wi < currentWordIndex) {
       const typedForThis = typedWords[wi] ?? "";
       const maxLen = Math.max(word.length, typedForThis.length);
-      // تشخیص خطا: وقتی کاربر چیزی تایپ کرده و با word اصلی فرق داشته باشه
       const isWrong = typedForThis !== "" && typedForThis !== word;
 
       return (

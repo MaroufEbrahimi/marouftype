@@ -23,7 +23,7 @@ const Navbar = ({ wordPerMin, charsPerMin, typingStatus }: NavbarProps) => {
 
         <div className="navbar_inner_box">
           <div className="navbar_inner_box_circle">{typingStatus || "—"}</div>
-          <div className="navbar_inner_box_text">وضعیت</div>
+          <div className="navbar_inner_box_text">دقت %</div>
         </div>
       </div>
 
